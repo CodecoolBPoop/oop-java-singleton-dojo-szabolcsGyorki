@@ -10,14 +10,15 @@ class Printer {
     private static final List<Printer> INSTANCES = new ArrayList<>();
 
     private int id; // ID of the printer. Unique.
-    private static int nextId = 1;
     private LocalTime busyEndTime;
 
     static Printer getInstance() {
         Random random = new Random();
         if (INSTANCES.isEmpty()) {
+            int nextId = 1;
             for (int i = 0; i < 10; i++) {
                 INSTANCES.add(new Printer(nextId));
+                nextId++;
             }
         }
         if (allIsBusy()) {
@@ -37,7 +38,7 @@ class Printer {
     }
 
     private Printer(int id) {
-        this.id = nextId++;
+        this.id = id;
         busyEndTime = LocalTime.now();
     }
 
