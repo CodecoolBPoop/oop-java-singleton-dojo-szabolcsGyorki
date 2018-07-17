@@ -14,7 +14,10 @@ public class PrinterManager {
     public static void main(String[] args) {
         for (int i = 0; i < 15; i++) {
             Printer printer = Printer.getInstance();
-            printer.print("Something to print.");
+            if (printer.isAvailable())
+                printer.print("Something to print.");
+            else
+                printer.print("Printer is busy");
         }
     }
 
